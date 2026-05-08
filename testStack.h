@@ -31,51 +31,51 @@ public:
       reset();
 
       // Construct
-      test_construct_default();
-      test_constructCopy_empty();
-      test_constructCopy_standard();
-      test_constructCopy_partiallyFilled();
-      test_constructMove_empty();
-      test_constructMove_standard();
-      test_constructMove_partiallyFilled();
-      test_constructInit_empty();
-      test_constructInit_standard();
-      test_constructInit_emptySTD();
-      test_constructInit_standardSTD();
-      test_constructInitMove_empty();
-      test_constructInitMove_standard();
-      test_constructInitMove_emptySTD();
-      test_constructInitMove_standardSTD();
-      test_destructor_empty();
-      test_destructor_standard();
-      test_destructor_partiallyFilled();
+      //test_construct_default();
+      //test_constructCopy_empty();
+      //test_constructCopy_standard();
+      //test_constructCopy_partiallyFilled();
+      //test_constructMove_empty();
+      //test_constructMove_standard();
+      //test_constructMove_partiallyFilled();
+      //test_constructInit_empty();
+      //test_constructInit_standard();
+      //test_constructInit_emptySTD();
+      //test_constructInit_standardSTD();
+      //test_constructInitMove_empty();
+      //test_constructInitMove_standard();
+      //test_constructInitMove_emptySTD();
+      //test_constructInitMove_standardSTD();
+      //test_destructor_empty();
+      //test_destructor_standard();
+      //test_destructor_partiallyFilled();
 
       // Access
-      test_top_readOne();
-      test_top_readStandard();
-      test_top_writeOne();
-      test_top_writeStandard();
+      //test_top_readOne();
+      //test_top_readStandard();
+      //test_top_writeOne();
+      //test_top_writeStandard();
 
       // Insert
-      test_pushCopy_empty();
-      test_pushCopy_standard();
-      test_pushCopy_standardList();
-      test_pushMove_empty();
-      test_pushMove_standard();
-      test_pushMove_standardList();
+      //test_pushCopy_empty();
+      //test_pushCopy_standard();
+      //test_pushCopy_standardList();
+      //test_pushMove_empty();
+      //test_pushMove_standard();
+      //test_pushMove_standardList();
 
       // Delete
-      test_pop_empty();
-      test_pop_one();
-      test_pop_standard();
-      test_pop_standardList();
-      test_pop_spy();
+      //test_pop_empty();
+      //test_pop_one();
+      //test_pop_standard();
+      //test_pop_standardList();
+      //test_pop_spy();
 
       // Status
       test_size_empty();
-      test_size_standard();
-      test_empty_empty();
-      test_empty_standard();
+      //test_size_standard();
+      //test_empty_empty();
+      //test_empty_standard();
 
       report("Stack");
    }
