@@ -111,9 +111,9 @@ public:
    //
    // Status
    //
-   size_t  size()          const { return 999;}
-   size_t  capacity()      const { return 999;}
-   bool empty()            const { return true;}
+   size_t  size()          const { return numElements;}
+   size_t  capacity()      const { return numCapacity;}
+   bool empty()            const { return numElements == 0;}
   
 private:
    
@@ -200,8 +200,8 @@ template <typename T, typename A>
 vector <T, A> :: vector(const A & a)
 {
    data = nullptr;
-   numElements = 19;
-   numCapacity = 29;
+   numElements = 0;
+   numCapacity = 0;
 }
 
 
@@ -213,9 +213,12 @@ vector <T, A> :: vector(const A & a)
 template <typename T, typename A>
 vector <T, A> :: vector(size_t num, const T & t, const A & a) 
 {
-   data = nullptr;
-   numElements = 19;
-   numCapacity = 29;
+   numElements = num;
+   numCapacity = num;
+   data = alloc.allocate(numCapacity);
+   
+   for (size_t i = 0; i < numElements; i++)
+      alloc.construct(&data[i], t);
 }
 
 /*****************************************
@@ -225,9 +228,24 @@ vector <T, A> :: vector(size_t num, const T & t, const A & a)
 template <typename T, typename A>
 vector <T, A> :: vector(const std::initializer_list<T> & l, const A & a) 
 {
-   data = nullptr;
-   numElements = 19;
-   numCapacity = 29;
+   numElements = l.size();
+   numCapacity = l.size();
+   
+   if (numCapacity > 0)
+   {
+      data = alloc.allocate(numCapacity);
+      
+      size_t i = 0;
+      for (const auto & item : l)
+      {
+         alloc.construct(&data[i], item);
+         i++;
+      }
+   }
+   else
+   {
+      data = nullptr;
+   }
 }
 
 /*****************************************
@@ -238,9 +256,19 @@ vector <T, A> :: vector(const std::initializer_list<T> & l, const A & a)
 template <typename T, typename A>
 vector <T, A> :: vector(size_t num, const A & a) 
 {
-   data = nullptr;
-   numElements = 19;
-   numCapacity = 29;
+   numElements = num;
+   numCapacity = num;
+   
+   if (numCapacity > 0)
+   {
+      data = alloc.allocate(numCapacity);
+      for (size_t i = 0; i < numElements; i++)
+         alloc.construct(&data[i]);
+   }
+   else
+   {
+      data = nullptr;
+   }
 }
 
 /*****************************************
@@ -251,9 +279,20 @@ vector <T, A> :: vector(size_t num, const A & a)
 template <typename T, typename A>
 vector <T, A> :: vector (const vector & rhs) 
 {
-   data = nullptr;
-   numElements = 19;
-   numCapacity = 29;
+   numElements = rhs.numElements;
+   numCapacity = rhs.numCapacity;
+   
+   if (numCapacity > 0)
+   {
+      data = alloc.allocate(numCapacity);
+      
+      for (size_t i = 0; i < numElements; i++)
+         alloc.construct(&data[i], rhs.data[i]);
+   }
+   else
+   {
+      data = nullptr;
+   }
 }
    
 /*****************************************
@@ -263,9 +302,13 @@ vector <T, A> :: vector (const vector & rhs)
 template <typename T, typename A>
 vector <T, A> :: vector (vector && rhs) 
 {
-   data = nullptr;
-   numElements = 19;
-   numCapacity = 29;
+   this->data = rhs.data;
+   this->numElements = rhs.numElements;
+   this->numCapacity = rhs.numCapacity;
+   
+   rhs.data = nullptr;
+   rhs.numElements = 0;
+   rhs.numCapacity = 0;
 }
 
 /*****************************************
@@ -276,6 +319,12 @@ vector <T, A> :: vector (vector && rhs)
 template <typename T, typename A>
 vector <T, A> :: ~vector()
 {
+   if (data != nullptr)
+   {
+      for (size_t i = 0; i < numElements; i++)
+         alloc.destroy(&data[i]);
+      alloc.deallocate(data, numCapacity);
+   }
 }
 
 /***************************************

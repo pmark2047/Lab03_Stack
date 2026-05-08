@@ -99,8 +99,8 @@ public:
    // Status
    //
    
-   size_t size () const { return 99;   }
-   bool   empty() const { return true; }
+   size_t size () const { return container.size(); }
+   bool   empty() const { return container.empty(); }
    
 
 #ifdef DEBUG // make this visible to the unit tests
