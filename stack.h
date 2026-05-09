@@ -37,11 +37,11 @@ public:
    // Construct
    //
    
-   stack()                       {  }
-   stack(const stack <T> &  rhs) {  }
-   stack(      stack <T> && rhs) {  }
-   stack(const Container &  rhs) {  }
-   stack(      Container && rhs) {  }
+   stack() : container()                                                            {  }
+   stack(const stack<T, Container>& rhs) : container(rhs.container)                 {  }
+   stack(      stack<T, Container>&& rhs) : container(std::move(rhs.container))     {  }
+   stack(const Container&  rhs) : container(rhs)                                    {  }
+   stack(      Container&& rhs) : container(std::move(rhs))                         {  }
    ~stack()                      {                      }     
    
    //
@@ -66,11 +66,11 @@ public:
    
    T & top()       
    { 
-      return *(new T); 
+      return container.back(); 
    }
    const T & top() const 
    { 
-      return *(new T); 
+      return container.back(); 
    }
 
    //
@@ -79,11 +79,11 @@ public:
    
    void push(const T &  t) 
    {  
-   
+      container.push_back(t);
    }
    void push(      T && t) 
    {  
-   
+      container.push_back(std::move(t));
    }
 
    //
@@ -92,7 +92,7 @@ public:
    
    void pop() 
    {  
-   
+      container.pop_back();
    }
 
    //

@@ -108,6 +108,13 @@ public:
    }
    void pop_back()
    {
+      size_t i = numElements - 1;
+      if (numElements == 0) 
+      {
+          return;
+      }
+      alloc.destroy(&data[i]);
+      numElements--;
    }
    void shrink_to_fit();
 
@@ -340,13 +347,41 @@ vector <T, A> :: ~vector()
 template <typename T, typename A>
 void vector <T, A> :: resize(size_t newElements)
 {
-   numElements = 3;
+   if (newElements < numElements)
+   {
+      for (size_t i = newElements; i < numElements; ++i)
+         alloc.destroy(&data[i]);
+   }
+   else if (newElements > numElements)
+   {
+      if (newElements > numCapacity)
+         reserve(newElements);
+
+      for (size_t i = numElements; i < newElements; ++i)
+         alloc.construct(&data[i]);
+   }
+
+   numElements = newElements;
 }
 
 template <typename T, typename A>
 void vector <T, A> :: resize(size_t newElements, const T & t)
 {
-   numElements = 3;
+   if (newElements < numElements)
+   {
+      for (size_t i = newElements; i < numElements; ++i)
+         alloc.destroy(&data[i]);
+   }
+   else if (newElements > numElements)
+   {
+      if (newElements > numCapacity)
+         reserve(newElements);
+
+      for (size_t i = numElements; i < newElements; ++i)
+         alloc.construct(&data[i], t);
+   }
+
+   numElements = newElements;
 }
 
 /***************************************

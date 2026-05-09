@@ -91,12 +91,12 @@ public:
       test_pushback_moveEmpty();
       test_pushback_moveExcessCapacity();
       test_pushback_moveRequireReallocate();
-      //test_resize_emptyZero();
-      //test_resize_emptyFourDefault();
-      //test_resize_emptyFourValue();
-      //test_resize_fourZero();
+      test_resize_emptyZero();
+      test_resize_emptyFourDefault();
+      test_resize_emptyFourValue();
+      test_resize_fourZero();
       //test_resize_fourSixDefault(); // NYI
-      //test_resize_fourSixValue();
+      test_resize_fourSixValue();
       test_reserve_emptyZero();
       test_reserve_emptyTen();
       test_reserve_fourZero();
@@ -106,11 +106,11 @@ public:
       //test_reserve_standardTen(); // NYI
 
       // Remove
-      //test_popback_empty();
-      //test_popback_full();
-      //test_popback_partiallyFilled();
-      //test_clear_empty();
-      //test_clear_full();
+      test_popback_empty();
+      test_popback_full();
+      test_popback_partiallyFilled();
+      test_clear_empty();
+      test_clear_full();
       //test_clear_partiallyFilled(); // NYI
       test_shrink_empty();
       test_shrink_toEmpty();
