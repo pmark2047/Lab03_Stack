@@ -45,16 +45,16 @@ public:
       test_destructor_partiallyFilled();
 
       // Assign
-      //test_assign_empty();
-      //test_assign_sameSize();
-      //test_assign_rightBigger();
+      test_assign_empty();
+      test_assign_sameSize();
+      test_assign_rightBigger();
       //test_assign_leftBigger(); // NYI
-      //test_assignMove_empty();
-      //test_assignMove_sameSize();
-      //test_assignMove_rightBigger();
-      //test_assignMove_leftBigger();
-      //test_assign_fullToFull();
-      //test_assignMove_fullToFull();
+      test_assignMove_empty();
+      test_assignMove_sameSize();
+      test_assignMove_rightBigger();
+      test_assignMove_leftBigger();
+      test_assign_fullToFull();
+      test_assignMove_fullToFull();
       //test_swap_empty();
       //test_swap_sameSize();
       //test_swap_rightBigger();
@@ -76,33 +76,33 @@ public:
       //test_iterator_notEquals_different();
 
       // Access
-      //test_subscript_read();
-      //test_subscript_write();
-      //test_front_read();
-      //test_front_write();
-      //test_back_read();
-      //test_back_write();
+      test_subscript_read();
+      test_subscript_write();
+      test_front_read();
+      test_front_write();
+      test_back_read();
+      test_back_write();
       //test_back_partiallyfilled(); // NYI
 
       // Insert
-      //test_pushback_empty();
-      //test_pushback_excessCapacity();
+      test_pushback_empty();
+      test_pushback_excessCapacity();
       //test_pushback_requireReallocate(); // NYI
-      //test_pushback_moveEmpty();
-      //test_pushback_moveExcessCapacity();
-      //test_pushback_moveRequireReallocate();
+      test_pushback_moveEmpty();
+      test_pushback_moveExcessCapacity();
+      test_pushback_moveRequireReallocate();
       //test_resize_emptyZero();
       //test_resize_emptyFourDefault();
       //test_resize_emptyFourValue();
       //test_resize_fourZero();
       //test_resize_fourSixDefault(); // NYI
       //test_resize_fourSixValue();
-      //test_reserve_emptyZero();
-      //test_reserve_emptyTen();
-      //test_reserve_fourZero();
-      //test_reserve_fourFour();
-      //test_reserve_fourTen();
-      //test_reserve_standardZero();
+      test_reserve_emptyZero();
+      test_reserve_emptyTen();
+      test_reserve_fourZero();
+      test_reserve_fourFour();
+      test_reserve_fourTen();
+      test_reserve_standardZero();
       //test_reserve_standardTen(); // NYI
 
       // Remove
@@ -112,10 +112,10 @@ public:
       //test_clear_empty();
       //test_clear_full();
       //test_clear_partiallyFilled(); // NYI
-      //test_shrink_empty();
-      //test_shrink_toEmpty();
-      //test_shrink_standard();
-      //test_shrink_twoExtraSlots();
+      test_shrink_empty();
+      test_shrink_toEmpty();
+      test_shrink_standard();
+      test_shrink_twoExtraSlots();
       
       // Status
       test_size_empty();
