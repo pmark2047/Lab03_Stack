@@ -13,7 +13,7 @@
  *    This will contain the class definition of:
  *       stack             : similar to std::stack
  * Author
- *    <your names here>
+ *    Nathan Lipovich - 1h15m
  ************************************************************************/
 
 #pragma once
