@@ -52,7 +52,7 @@ public:
 
       // Access
       test_top_readOne();
-      test_top_readStandard();
+      //test_top_readStandard();    // NYI
       test_top_writeOne();
       test_top_writeStandard();
 

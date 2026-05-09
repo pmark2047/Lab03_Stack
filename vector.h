@@ -61,6 +61,10 @@ public:
    //
    void swap(vector& rhs)
    {
+      std::swap(data, rhs.data);
+      std::swap(numCapacity, rhs.numCapacity);
+      std::swap(numElements, rhs.numElements);
+      std::swap(alloc, rhs.alloc);
    }
    vector & operator = (const vector & rhs);
    vector & operator = (vector&& rhs);
@@ -71,11 +75,11 @@ public:
    class iterator;
    iterator begin() 
    { 
-      return iterator(); 
+      return iterator(data);
    }
    iterator end() 
    { 
-      return iterator(); 
+      return iterator(data + numElements);
    }
 
    //
@@ -154,46 +158,53 @@ class vector <T, A> ::iterator
 public:
    // constructors, destructors, and assignment operator
    iterator()                           {  }
-   iterator(T* p)                       {  }
-   iterator(const iterator& rhs)        {  }
+   iterator(T* p) : p(p)                {  }
+   iterator(const iterator& rhs)        { this->p = rhs.p; }
    iterator(size_t index, vector<T>& v) {  }
    iterator& operator = (const iterator& rhs)
    {
+      this->p = rhs.p;
       return *this;
    }
 
    // equals, not equals operator
-   bool operator != (const iterator& rhs) const { return true; }
-   bool operator == (const iterator& rhs) const { return true; }
+   bool operator != (const iterator& rhs) const { return p != rhs.p; }
+   bool operator == (const iterator& rhs) const { return p == rhs.p; }
 
    // dereference operator
    T& operator * ()
    {
-      return *(new T);
+      return *p;
    }
 
    // prefix increment
    iterator& operator ++ ()
    {
+      p++;
       return *this;
    }
 
    // postfix increment
    iterator operator ++ (int postfix)
    {
-      return *this;
+      iterator old = *this;
+      p++;
+      return old;
    }
 
    // prefix decrement
    iterator& operator -- ()
    {
+      --p;
       return *this;
    }
 
    // postfix decrement
    iterator operator -- (int postfix)
    {
-      return *this;
+      iterator old = *this;
+      p--;
+      return old;
    }
 
 private:
@@ -290,7 +301,7 @@ template <typename T, typename A>
 vector <T, A> :: vector (const vector & rhs) 
 {
    numElements = rhs.numElements;
-   numCapacity = rhs.numCapacity;
+   numCapacity = rhs.numElements;
    
    if (numCapacity > 0)
    {
